@@ -26,7 +26,6 @@ public class staffLoginServ extends HttpServlet {
      */
     public staffLoginServ() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -61,6 +60,7 @@ public class staffLoginServ extends HttpServlet {
 			}
 			String newOffice = (String) request.getParameter("office");
 			newSta.setOfficeNo(newOffice);
+			newSta.setType("Instructor");
 			DBUtil.addToDB(newSta);
 			
 			HStaff sta = DBUtil.createQuery("SELECT h FROM HStaff h WHERE h.staffName = '" + newName + "' AND h.HDepartment.deptName = '" + newDeptName + "' AND h.userPassword = '" + newPwd + "'", HStaff.class).getSingleResult();
