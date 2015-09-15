@@ -28,21 +28,21 @@ public class DBUtil {
 		}
 
 	}
-	
+
 	public static <T> void updateDB(Object T) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
-		trans.begin(); 
+		trans.begin();
 		try {
-		em.merge(T);
-		trans.commit();
+			em.merge(T);
+			trans.commit();
 		} catch (Exception e) {
-		System.out.println(e);
-		trans.rollback();
+			System.out.println(e);
+			trans.rollback();
 		} finally {
-		em.close();
+			em.close();
 		}
-		}
+	}
 
 	public static <T> TypedQuery<T> createQuery(String q, Class<T> className) {
 		EntityManager em = emf.createEntityManager();
@@ -51,20 +51,20 @@ public class DBUtil {
 		return tQuery;
 	}
 
-//	public static <T> void updateDB(TypedQuery<T> tQuery) {
-//		EntityManager em = emf.createEntityManager();
-//		EntityTransaction trans = em.getTransaction();
-//		try {
-//			trans.begin();
-//			tQuery.executeUpdate();
-//			trans.commit();
-//		} catch (Exception e) {
-//			trans.rollback();
-//		} finally {
-//			em.close();
-//		}
-//	}
-	
+	// public static <T> void updateDB(TypedQuery<T> tQuery) {
+	// EntityManager em = emf.createEntityManager();
+	// EntityTransaction trans = em.getTransaction();
+	// try {
+	// trans.begin();
+	// tQuery.executeUpdate();
+	// trans.commit();
+	// } catch (Exception e) {
+	// trans.rollback();
+	// } finally {
+	// em.close();
+	// }
+	// }
+
 	public static <T> void deleteFromDB(Object T) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction trans = em.getTransaction();
@@ -79,5 +79,5 @@ public class DBUtil {
 		}
 
 	}
-	
+
 }
