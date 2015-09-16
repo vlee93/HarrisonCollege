@@ -41,35 +41,6 @@ public class staffLoginServ extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		error = "";
-		if (request.getParameter("createAcc") != null) {
-			HStaff newSta= new HStaff();
-			String newName = (String) request.getParameter("staName");
-			String newPwd = (String) request.getParameter("staPwd");
-			String newDeptName = (String) request.getParameter("department");
-			newSta.setStaffName(newName);
-			newSta.setUserPassword(newPwd);
-			
-			try {
-				HDepartment newDept = DBUtil.createQuery("SELECT h FROM HDepartment h WHERE h.deptName = '" + newDeptName + "' AND h.available = 1", HDepartment.class).getSingleResult();
-				newSta.setHDepartment(newDept);
-			} catch (Exception e) {
-				e.printStackTrace();
-				error += "<div class=\"alert alert-danger\"><strong>Error!</strong> Department does not exist.</div>";
-				request.setAttribute("error", error);
-				getServletContext().getRequestDispatcher("/staffLogin.jsp").forward(request, response);
-			}
-			String newOffice = (String) request.getParameter("office");
-			newSta.setOfficeNo(newOffice);
-			newSta.setType("Instructor");
-			DBUtil.addToDB(newSta);
-			
-			HStaff sta = DBUtil.createQuery("SELECT h FROM HStaff h WHERE h.staffName = '" + newName + "' AND h.HDepartment.deptName = '" + newDeptName + "' AND h.userPassword = '" + newPwd + "'", HStaff.class).getSingleResult();
-			long newStaId = sta.getStaffId();
-			error += "<div class=\"alert alert-success\"><strong>Success!</strong> Your staff ID is " + newStaId + ". Please login.</div>";
-			request.setAttribute("error", error);
-			getServletContext().getRequestDispatcher("/staffLogin.jsp").forward(request, response);
-		}
-		
 		if (request.getParameter("login") != null) {
 			long existId = Long.parseLong((String) request.getParameter("staID"));
 			String existPwd = (String) request.getParameter("loginPwd");
@@ -83,6 +54,39 @@ public class staffLoginServ extends HttpServlet {
 				getServletContext().getRequestDispatcher("/staffLogin.jsp").forward(request, response);
 			}
 		}
+		
+		if (request.getParameter("createAcc") != null) {
+			HStaff newSta= new HStaff();
+			String newName = (String) request.getParameter("staName");
+			String newPwd = (String) request.getParameter("staPwd");
+			String newDeptName = (String) request.getParameter("department");
+			newSta.setStaffName(newName);
+			newSta.setUserPassword(newPwd);
+			String newOffice = (String) request.getParameter("office");
+			newSta.setOfficeNo(newOffice);
+			newSta.setType("Instructor");
+			try {
+				HDepartment newDept = DBUtil.createQuery("SELECT h FROM HDepartment h WHERE h.deptName = '" + newDeptName + "' AND h.available = 1", HDepartment.class).getSingleResult();
+				newSta.setHDepartment(newDept);
+				DBUtil.addToDB(newSta);
+				
+				HStaff sta = DBUtil.createQuery("SELECT h FROM HStaff h WHERE h.staffName = '" + newName + "' AND h.HDepartment.deptName = '" + newDeptName + "' AND h.userPassword = '" + newPwd + "'", HStaff.class).getSingleResult();
+				long newStaId = sta.getStaffId();
+				error += "<div class=\"alert alert-success\"><strong>Success!</strong> Your staff ID is " + newStaId + ". Please login.</div>";
+				request.setAttribute("error", error);
+				getServletContext().getRequestDispatcher("/staffLogin.jsp").forward(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				error += "<div class=\"alert alert-danger\"><strong>Error!</strong> Department does not exist.</div>";
+				request.setAttribute("error", error);
+				getServletContext().getRequestDispatcher("/staffLogin.jsp").forward(request, response);
+			}
+			
+
+		}
+		
+
 	}
 
 }

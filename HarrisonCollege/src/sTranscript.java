@@ -40,7 +40,7 @@ public class sTranscript extends HttpServlet {
 		transMsg = "";
 		HStudent stu = (HStudent) session.getAttribute("userStudent");
 		transMsg += "<div class=\"container\"><div class=\"jumbotron\"><h3>" + stu.getStudentName() + "</h3><h5>Student ID: " + stu.getStudentId() + "</h5><h5>Start Year: " + stu.getStartYear() + "</h5><h5>Major: " + stu.getHMajor().getMajorName() + "</h5></div></div>";
-		List<HEnrollment> enroll = DBUtil.createQuery("SELECT h from HEnrollment h WHERE h.HStudent.studentId = " + stu.getStudentId(), HEnrollment.class).getResultList();
+		List<HEnrollment> enroll = DBUtil.createQuery("SELECT h FROM HEnrollment h WHERE h.HStudent.studentId = " + stu.getStudentId(), HEnrollment.class).getResultList();
 		transMsg += "<br /><div class=\"container\"><h3>Unofficial Transcript</h3><table class=\"table\"><thead><tr><th>Code</th><th>Class Name</th><th>Instructor</th><th>Credit #</th><th>Grade</th><th>Points</th></tr></thead><tbody>";
 		double totalCredits = 0.0;
 		double totalPoints = 0.0;

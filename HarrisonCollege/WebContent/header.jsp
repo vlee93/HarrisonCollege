@@ -26,11 +26,13 @@
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
+				<img src="Harrisonlogo.png" class="img-rounded" alt="Cinque Terre" width="44" height="44">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#myNavbar">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
+				
 				<a class="navbar-brand" href="index.jsp">Harrison College</a>
 			</div>
 			<div class="collapse navbar-collapse" name="myNavbar" id="myNavbar">
@@ -59,9 +61,25 @@
 					<li><a href="aEnrollment">Enrollment</a></li>
 				</ul>
 				<%
-					}
+					} else if (userStaff != null
+					&& userStaff.getType().equalsIgnoreCase("Admin")) {
 				%>
+				<ul class="nav navbar-nav">
+					<li><a href="adminCourses">Courses</a></li>
+					<li><a href="adminClassrooms">Classrooms</a></li>
+					<li><a href="adminMajors">Majors</a></li>
+					<li><a href="adminStaff">Staff</a></li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin Functions<span class="caret"></span></a>
+         				<ul class="dropdown-menu">
+            				<li><a href="studentF">Students</a></li>
+            				<li><a href="instructorF">Instructors</a></li>
+            				<li><a href="courseF">Courses</a></li>
+          				</ul>
+        			</li>
+				</ul>
 				<%
+					}
+				
 					if (userStudent == null && userStaff == null) {
 				%>
 				<ul class="nav navbar-nav navbar-right">

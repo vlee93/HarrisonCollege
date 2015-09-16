@@ -24,6 +24,7 @@ function validateForm2() {
 ${error}
 </div>
 <div class="container">
+<h3> Student Login </h3>
 <div class="col-sm-6">
 <h3>Create an Account</h3>
 <form class="form-horizontal" role="form" name="createAccForm" id="createAccForm" onsubmit="return validateForm1()" action="studentLoginServ" method="post">

@@ -43,33 +43,6 @@ public class studentLoginServ extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		error = "";
-		if (request.getParameter("createAcc") != null) {
-			HStudent newStu = new HStudent();
-			String newName = (String) request.getParameter("stuName");
-			String newPwd = (String) request.getParameter("stuPwd");
-			String newMajorName = (String) request.getParameter("major");
-			newStu.setStudentName(newName);
-			newStu.setUserPassword(newPwd);
-			
-			try {
-				HMajor newMajor = DBUtil.createQuery("SELECT h FROM HMajor h WHERE h.majorName = '" + newMajorName + "' AND h.available = 1", HMajor.class).getSingleResult();
-				newStu.setHMajor(newMajor);
-			} catch (Exception e) {
-				e.printStackTrace();
-				error += "<div class=\"alert alert-danger\"><strong>Error!</strong> Major does not exist.</div>";
-				request.setAttribute("error", error);
-				getServletContext().getRequestDispatcher("/studentLogin.jsp").forward(request, response);
-			}
-			int newYear = Integer.parseInt((String) request.getParameter("year"));
-			newStu.setStartYear(newYear);
-			DBUtil.addToDB(newStu);
-			
-			HStudent stu = DBUtil.createQuery("SELECT h FROM HStudent h WHERE h.studentName = '" + newName + "' AND h.HMajor.majorName = '" + newMajorName + "' AND h.userPassword = '" + newPwd + "'", HStudent.class).getSingleResult();
-			long newStuId = stu.getStudentId();
-			error += "<div class=\"alert alert-success\"><strong>Success!</strong> Your student ID is " + newStuId + ". Please login.</div>";
-			request.setAttribute("error", error);
-			getServletContext().getRequestDispatcher("/studentLogin.jsp").forward(request, response);
-		}
 		
 		if (request.getParameter("login") != null) {
 			long existId = Long.parseLong((String) request.getParameter("stuID"));
@@ -84,6 +57,36 @@ public class studentLoginServ extends HttpServlet {
 				getServletContext().getRequestDispatcher("/studentLogin.jsp").forward(request, response);
 			}
 		}
+		
+		if (request.getParameter("createAcc") != null) {
+			HStudent newStu = new HStudent();
+			String newName = (String) request.getParameter("stuName");
+			String newPwd = (String) request.getParameter("stuPwd");
+			String newMajorName = (String) request.getParameter("major");
+			newStu.setStudentName(newName);
+			newStu.setUserPassword(newPwd);
+			int newYear = Integer.parseInt((String) request.getParameter("year"));
+			newStu.setStartYear(newYear);
+			try {
+				HMajor newMajor = DBUtil.createQuery("SELECT h FROM HMajor h WHERE h.majorName = '" + newMajorName + "' AND h.available = 1", HMajor.class).getSingleResult();
+				newStu.setHMajor(newMajor);
+				DBUtil.addToDB(newStu);
+				
+				HStudent stu = DBUtil.createQuery("SELECT h FROM HStudent h WHERE h.studentName = '" + newName + "' AND h.HMajor.majorName = '" + newMajorName + "' AND h.userPassword = '" + newPwd + "'", HStudent.class).getSingleResult();
+				long newStuId = stu.getStudentId();
+				error += "<div class=\"alert alert-success\"><strong>Success!</strong> Your student ID is " + newStuId + ". Please login.</div>";
+				request.setAttribute("error", error);
+				getServletContext().getRequestDispatcher("/studentLogin.jsp").forward(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				error += "<div class=\"alert alert-danger\"><strong>Error!</strong> Major does not exist.</div>";
+				request.setAttribute("error", error);
+				getServletContext().getRequestDispatcher("/studentLogin.jsp").forward(request, response);
+			}
+
+		}
+		
 	}
 
 }

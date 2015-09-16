@@ -2,6 +2,8 @@
 
 <div class="container">
 ${error}
+<h3> Staff Login </h3>
+
 <div class="col-sm-6">
 <h3>Create an Account</h3>
 <form class="form-horizontal" role="form" name="createAccForm" id="createAccForm" action="staffLoginServ" method="post">
