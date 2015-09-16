@@ -38,12 +38,7 @@
 					if (userStudent != null) {
 				%>
 				<ul class="nav navbar-nav">
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Enroll<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="sAddClass">Add Class</a></li>
-							<li><a href="sDropClass">Drop Class</a></li>
-						</ul></li>
+					<li><a href="sAddClass">Enroll</a></li>
 					<li><a href="sViewSchedule">View Schedule</a></li>
 					<li><a href="sTranscript">Transcript</a></li>
 				</ul>

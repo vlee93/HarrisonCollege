@@ -1,8 +1,13 @@
 <jsp:include page="./header.jsp"/>
 
+${addClassError}
 
-${message1}
-${message2}
+${addClassMsg}
+
+${scheduleMsg}
+
+${transMsg}
+
 ${message3}
 
 </body>

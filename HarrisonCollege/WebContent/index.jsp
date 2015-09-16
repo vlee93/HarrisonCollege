@@ -2,6 +2,8 @@
 
 ${loggedout}
 
+HI THIS IS INDEX :)
+
 
 </body>
 </html>
