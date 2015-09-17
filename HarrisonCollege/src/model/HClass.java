@@ -7,7 +7,6 @@ import java.util.List;
 
 /**
  * The persistent class for the H_CLASS database table.
- * 
  */
 @Entity
 @Table(name="H_CLASS", schema="TESTDB")
