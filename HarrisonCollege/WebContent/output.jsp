@@ -23,6 +23,9 @@ ${adminRoomMsg}
 ${adminMajorMsg}
 ${adminStfSuccess}
 ${adminStfMsg}
+${studFMsg}
+${insFMsg}
+${courseFMsg}
 
 </body>
 </html>
