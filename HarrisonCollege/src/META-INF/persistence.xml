@@ -4,12 +4,12 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>model.HClass</class>
 		<class>model.HClassroom</class>
-		<class>model.HCourse</class>
-		<class>model.HDepartment</class>
 		<class>model.HEnrollment</class>
-		<class>model.HMajor</class>
+		<class>model.HCourse</class>
 		<class>model.HStaff</class>
 		<class>model.HStudent</class>
+		<class>model.HMajor</class>
+		<class>model.HDepartment</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
