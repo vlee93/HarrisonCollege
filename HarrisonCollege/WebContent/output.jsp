@@ -21,6 +21,8 @@ ${transMsg}
 ${adminCourMsg}
 ${adminRoomMsg}
 ${adminMajorMsg}
+${adminStfSuccess}
+${adminStfMsg}
 
 </body>
 </html>
