@@ -15,9 +15,23 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+/* backgrount */
+.navbar-inverse {
+	background-color: #1E6912;
+	
+}
+/* title */
+.navbar-inverse .navbar-brand {
+    color: #96D38D;
+}
+/* text */
+.navbar-inverse .navbar-collapse .navbar-nav > li > a {
+	color: #96D38D;
+}
+</style>
 </head>
 <body>
-
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -83,4 +97,3 @@
 			</div>
 		</div>
 	</nav>
-
