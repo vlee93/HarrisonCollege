@@ -60,9 +60,16 @@ public class aAdd_course extends HttpServlet {
 			enrollment_in_DB = null;
 		}
 		
+
+		qString = "SELECT h FROM HStudent h where h.studentId = ?1 ";
+		TypedQuery<HStudent> query4 = DBUtil.createQuery(qString, HStudent.class);
+		query4.setParameter(1, Long.parseLong(request.getParameter("student_id")));
+		String name = query4.getSingleResult().getStudentName();
+		//Check if the course is already deleted
+		
 		String alert = "";
 		if(enrollment_in_DB != null)
-			alert = "<label style=\"color:green\">Course already added to the student" + request.getParameter("student_id") + "</label>";
+			alert = "<label style=\"color:green\">Course already added to " + name + "'s schedule </label>";
 		else{
 			DBUtil.addToDB(enrollment);
 		    alert = "<label style=\"color:blue\">Course added successfully </label>";

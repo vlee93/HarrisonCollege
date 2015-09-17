@@ -73,14 +73,16 @@ public class aTranscript extends HttpServlet {
 		double totalCredits = 0.0;
 		double totalPoints = 0.0;
 		double gpa = 0.0;
-		
+		double course_gpa;
+		String grade_letter;
 		
 		for (int i = 0; i < enroll.size(); i++) {
-			
-			double points = Double.parseDouble(CalGPA(enroll.get(i).getGrade()).substring(1, 2)) * enroll.get(i).getHClass().getHCourse().getCredits();
+			course_gpa = Double.parseDouble(CalGPA(enroll.get(i).getGrade()).substring(1, 2));
+			grade_letter = CalGPA(enroll.get(i).getGrade()).substring(0, 1);
+			double points = course_gpa * enroll.get(i).getHClass().getHCourse().getCredits();
 			totalCredits += enroll.get(i).getHClass().getHCourse().getCredits();
 			totalPoints += points;
-			transMsg += "<tr><td>" + enroll.get(i).getHClass().getHCourse().getSubjectCode() + " " + enroll.get(i).getHClass().getHCourse().getCourseNo() + "</td><td>" + enroll.get(i).getHClass().getHCourse().getCourseName() + "</td><td>" + enroll.get(i).getHClass().getHStaff().getStaffName() + "</td><td>" + enroll.get(i).getHClass().getHCourse().getCredits() + "</td><td>" + CalGPA(enroll.get(i).getGrade()).substring(0, 1)+ "</td><td>" + points + "</td></tr>";
+			transMsg += "<tr><td>" + enroll.get(i).getHClass().getHCourse().getSubjectCode() + " " + enroll.get(i).getHClass().getHCourse().getCourseNo() + "</td><td>" + enroll.get(i).getHClass().getHCourse().getCourseName() + "</td><td>" + enroll.get(i).getHClass().getHStaff().getStaffName() + "</td><td>" + enroll.get(i).getHClass().getHCourse().getCredits() + "</td><td>" + grade_letter + "</td><td>" + points + "</td></tr>";
 		}
 		gpa = totalPoints / totalCredits;
 		transMsg += "<tr><th colspan=\"6\" style=\"text-align:right\">Total Credits: " + totalCredits + "</th></tr><tr><th colspan=\"6\" style=\"text-align:right\">Total Points: " + totalPoints + "</th></tr><tr><th colspan=\"6\" style=\"text-align:right\">GPA: " + formattedGpa(gpa) + "</th></tr></tbody></table>";

@@ -1,7 +1,8 @@
 <jsp:include page="./header.jsp" />
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="panel panel-primary col-sm-6 col-sm-offset-3">
+<div class="container">
+ <nav class="navbar navbar-default" style="background-color:#D5D5D5">
 	<div class="panel-heading">Class Search by Filter</div>
 	<div class="panel-body">
 
@@ -18,39 +19,44 @@
 			</div>
 		</c:if>
 
-		<form role="form " action="ClassSearch" method="POST">
-			<div class="form-group">
-				<label for="semester">Semester:</label> <select name="semester">
+		<form class="form-inline" role="form" action="ClassSearch" method="POST">
+			
+			<div class="form-group"  >
+				<label for="semester" >Semester:</label>
+				 <select class="form-control" name="semester" >
 					<option value="all">All Semesters</option>
 					<c:forEach var="semester" items="${semesters}">
 						<option value="${semester}">${semester}</option>
 					</c:forEach>
 				</select> 
-				<br> 
-				<label for="subjects">Subjects:</label> <select name="subjects">
+
+				<label for="subjects">Subjects:</label> 
+				<select class="form-control" name="subjects" >
 					<option value="all">All Subjects</option>
 					<c:forEach var="subjects" items="${subjects}">
 						<option value="${subjects}">${subjects}</option>
 					</c:forEach>
 				</select> 
-				<br> 
-				<label for="instructors">Instructors:</label> <select name="instructors">
+
+				<label for="instructors">Instructors:</label> 
+				<select class="form-control" name="instructors" >
 					<option value="all">All Instructors</option>
 					<c:forEach var="instructor" items="${instructors}">
 						<option value="${instructor}">${instructor}</option>
 					</c:forEach>
 				</select> 
-				<br> 
-				<label for="departments">Departments:</label> <select name="departments">
+
+				<label for="departments" >Departments:</label> 
+				<select class="form-control" name="departments" >
 					<option value="all">All Departments</option>
 					<c:forEach var="departments" items="${departments}">
 						<option value="${departments}">${departments}</option>
 					</c:forEach>
 				</select> 
-				<br> 
-				<label for="time">Time:</label>
-				<select name="time">
-					<option value="all">all</option>
+
+				<label for="time" >Start Time:</label>
+				<select class="form-control" name="time">
+					<option value="all">All</option>
 					<option value="6">6:00AM</option>
 					<option value="7">7:00AM</option>
 					<option value="8">8:00AM</option>
@@ -69,37 +75,37 @@
 					<option value="21">9:00PM</option>
 					<option value="22">10:00PM</option>	
 				</select> 
-				<br>
+
 
 			</div>
 
 			<div class="form-group">
 				<button type="submit" value="submit" class="btn btn-default">Search</button>
 
-
 			</div>
 		</form>
 	</div>
+</nav>
 </div>
-<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-	<table class="table table-bordered table-striped">
+<div class="container">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>Course Name</th>
-				<th>Subject</th>
+				<th>Subject Code</th>
 				<th>Instructor</th>
 				<th>Department</th>
-				<th>Time</th>
+				<th>Start Time</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="currentClass" items="${classes}">
+			<c:forEach var="classList" items="${classes}">
 				<tr>
-					<td>${currentClass.HCourse.name}</td>
-					<td>${currentClass.HCourse.HSubject.subjectCode}</td>
-					<td>${currentClass.HStaffDetail.HUser.staffName}</td>
-					<td>${currentClass.HCourse.HMajor.HDepartment.name}</td>
-					<td>time</td>
+					<td>${classList.HCourse.courseName}</td>
+					<td>${classList.HCourse.subjectCode}</td>
+					<td>${classList.HStaff.staffName}</td>
+					<td>${classList.HCourse.HDepartment.deptName}</td>
+					<td>${classList.startTime}:00 EST</td>
 
 				</tr>
 			</c:forEach>

@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Transcript</title>
@@ -13,9 +13,10 @@ select {
 }
 </style>
 </head>
-<body>
+<body> --%>
+
 <jsp:include page="header.jsp"></jsp:include>
-<nav class="navbar navbar-default " style="background-color:#D5D5D5">
+<!-- <nav class="navbar navbar-default " style="background-color:#D5D5D5">
   <div class="container-fluid">
      <ul class="nav nav-pills" style="font-family:Times New Roman;">
        <li role="presentation" class="active"><a href="/HarrisonCollege/aTranscript.jsp">View Transcript</a></li>
@@ -23,7 +24,7 @@ select {
        <li role="presentation"><a href="/HarrisonCollege/#">Courses</a></li>
        <li role="presentation"><a href="/HarrisonCollege/#">Classes</a></li>
        <li role="presentation"><a href="/HarrisonCollege/#">Majors</a></li><br><br><br>
-    </u1>
+    </u1> -->
     <form class="form" role="form" action="aTranscript" method="get">
        <label style="display:inline;">Enter student ID: </label>
        <input class="form-control" name="student_id" placeholder="student id" style="margin-right:10px;width:20%;display:inline;" required/>
@@ -32,8 +33,8 @@ select {
        <br>
        ${alert}
     </form>   
-  </div>
-</nav>
+<!--   </div>
+</nav> -->
 
 ${addClassError}
 

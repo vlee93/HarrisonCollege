@@ -15,7 +15,7 @@ select {
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-<nav class="navbar navbar-default " style="background-color:#D5D5D5">
+<!-- <nav class="navbar navbar-default " style="background-color:#D5D5D5">
   <div class="container-fluid">
      <ul class="nav nav-pills" style="font-family:Times New Roman;">
        <li role="presentation"><a href="/HarrisonCollege/iClasses.jsp">Classes</a></li>
@@ -25,8 +25,27 @@ select {
        <li role="presentation"><a href="/HarrisonCollege/#">Majors</a></li><br><br><br>
     </u1> 
   </div>
-</nav>
-  
+</nav> -->
+
+<form class="form" role="form" action="iStudents" method="post">
+	<label style="display: inline;">Semester: </label> <select
+		class="form-control" name="college_semester"
+		style="margin-left: 20px; display: inline-block; width: 10%; display: inline;">
+		<c:if test="${empty semesters}">
+			<option>Spring 2015</option>
+			<option>Summer 2015</option>
+			<option>Fall 2015</option>
+		</c:if>
+		<c:if test="${not empty semesters}">
+			<c:forEach var="semester" items="${semesters}">
+				<option>${semester}</option>
+			</c:forEach>
+		</c:if>
+	</select>
+	<button class="form-control" type="submit" value="View"
+		style="margin-left: 300px; display: inline-block; width: 10%; display: inline;">View</button>
+	<br>
+</form>
  <c:if test="${not empty students}">
 	 <div class="container">
 		 <table class="table table-striped">

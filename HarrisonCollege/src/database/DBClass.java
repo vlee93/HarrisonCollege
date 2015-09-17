@@ -29,7 +29,7 @@ public class DBClass
 			where += " WHERE 0=0 ";
 		} else
 		{
-			where += " WHERE h.HClass.semester = :semester ";
+			where += " WHERE h.semester = :semester ";
 			hasSemester = true;
 		}
 		
@@ -39,7 +39,7 @@ public class DBClass
 			where += " AND 0=0 ";
 		} else
 		{
-			where += " AND h.HClass.HCourse.subjectCode = :subject ";
+			where += " AND h.HCourse.subjectCode = :subject ";
 			hasSubject = true;
 		}
 		
@@ -50,7 +50,7 @@ public class DBClass
 			where += " AND 0=0 ";
 		} else
 		{
-			where += " AND h.HClass.HStaff.staffName = :instructor ";
+			where += " AND h.HStaff.staffName = :instructor ";
 			hasInstructor = true;
 		}
 		
@@ -60,7 +60,7 @@ public class DBClass
 			where += " AND 0=0 ";
 		} else
 		{
-			where += " AND h.HClass.HCourse.HDepartment.deptName = :department ";
+			where += " AND h.HCourse.HDepartment.deptName = :department ";
 			hasDepartment = true;
 		}
 		
@@ -70,7 +70,7 @@ public class DBClass
 			where += " AND 0=0 ";
 		} else
 		{
-			where += " AND h.HClass.startTime = :startTime ";
+			where += " AND h.startTime = :startTime ";
 			hasTime = true;
 		}
 		

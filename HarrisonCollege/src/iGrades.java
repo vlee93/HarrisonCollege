@@ -30,11 +30,9 @@ public class iGrades extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//get instructor
-		String qString = "select h from HStaff h where h.staffId = ?1";////for test
-		TypedQuery<HStaff> query = DBUtil.createQuery(qString, HStaff.class);
-		query.setParameter(1, 1);
-		HStaff instructor = query.getSingleResult();
+		HttpSession session = request.getSession();
+		HStaff stf = (HStaff) session.getAttribute("userStaff");
+		String qString = "";
 		
 		//get courses
 		qString = "select h from HCourse h";
@@ -48,7 +46,7 @@ public class iGrades extends HttpServlet {
 		for(HCourse course:courses){
 			qString = "select h from HClass h where h.HStaff = ?1 and h.HCourse = ?3";
 			TypedQuery<HClass> query3 = DBUtil.createQuery(qString, HClass.class);
-			query3.setParameter(1, instructor).setParameter(3, course);
+			query3.setParameter(1, stf).setParameter(3, course);
 			List<HClass> classes =  query3.getResultList();
 			for(HClass Class:classes){
 				class_list.add(Class);
@@ -87,9 +85,6 @@ public class iGrades extends HttpServlet {
 			}
 		}
       
-		System.out.println(Courses_info.size());
-		
-		HttpSession session = request.getSession();
 		session.setAttribute("students", students_list);
 		session.setAttribute("enrollments", enrollment_list);
 		session.setAttribute("courses", Courses_info);

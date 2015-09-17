@@ -5,6 +5,9 @@
 
 <% HStudent userStudent = (HStudent) session.getAttribute("userStudent"); %>
 <% HStaff userStaff = (HStaff) session.getAttribute("userStaff"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <head>
 <title>Harrison College</title>
 <meta charset="utf-8">
@@ -54,12 +57,14 @@
 
 				<% } else if (userStaff != null	&& userStaff.getType().equalsIgnoreCase("Instructor")) { %>
 				<ul class="nav navbar-nav">
-					<li><a href="iFunctions">Instructor Functions</a></li>
+					<li><a href="iClasses.jsp">Schedule</a></li>
+					<li><a href="iStudents.jsp">Students</a></li>
+					<li><a href="iGrades">Grades</a></li>
 				</ul>
 				<% } else if (userStaff != null && userStaff.getType().equalsIgnoreCase("Advisor")) { %>
 				<ul class="nav navbar-nav">
-					<li><a href="aTranscript">View Transcript</a></li>
-					<li><a href="aEnrollment">Enrollment</a></li>
+					<li><a href="aTranscript.jsp">View Transcript</a></li>
+					<li><a href="enrollment.jsp">Enrollment</a></li>
 				</ul>
 				<% } else if (userStaff != null && userStaff.getType().equalsIgnoreCase("Admin")) { %>
 				<ul class="nav navbar-nav">
@@ -86,7 +91,7 @@
 				</ul>
 				<% } else {	%>
 				<ul class="nav navbar-nav">
-					<li><a href="classes">Classes</a></li>
+					<li><a href="ClassSearch">Classes</a></li>
 					<li><a href="department">Departments</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

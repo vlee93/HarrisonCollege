@@ -60,7 +60,7 @@ public class ClassSearch extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-		String semester = request.getParameter("semesters");
+		String semester = request.getParameter("semester");
 		String subject = request.getParameter("subjects");
 		String instructor = request.getParameter("instructors");
 		String department = request.getParameter("departments");

@@ -15,7 +15,7 @@ select {
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-<nav class="navbar navbar-default " style="background-color:#D5D5D5">
+<!-- <nav class="navbar navbar-default " style="background-color:#D5D5D5">
   <div class="container-fluid">
      <ul class="nav nav-pills" style="font-family:Times New Roman;">
        <li role="presentation"><a href="/HarrisonCollege/iClasses.jsp">Classes</a></li>
@@ -23,14 +23,15 @@ select {
        <li role="presentation" class="active"><a href="/HarrisonCollege/iGrades">Grades</a></li>
        <li role="presentation"><a href="/HarrisonCollege/#">Courses</a></li>
        <li role="presentation"><a href="/HarrisonCollege/#">Majors</a></li><br><br><br>
-    </u1> 
+    </u1>  -->
+<div class="container">
    <form action="/HarrisonCollege/iGrades.jsp" method="get">    
 	    <button class="form-control " type="submit" value="Add Grades" style="margin-left:500px;display:inline-block;width:10%;">Add grades</button>
 	    <button class="form-control " type="submit" value="View Grades" style="margin-left:100px;display:inline-block;width:10%;"formaction="/HarrisonCollege/iViewGrades.jsp" >View Grades</button>
     </form>
-  </div>
-</nav>
-<label style="color:orange; margin-left:110px;">Note: insert -1 for grade "I" and -2 for grade "W"</label>
+<!--   </div>
+</nav> -->
+<label style="color:orange; margin-left:110px;">Note: insert -1 for status "Incomplete" and -2 for status "Withdraw"</label>
 <form action="iAddGrade" method="get">
  <c:if test="${not empty students}">
 	 <div class="container">
@@ -66,7 +67,7 @@ select {
  ${alert}    
 <button class="form-control " type="submit" value="Submit" style="margin-left:1130px;display:inline-block;width:10%;" >Submit</button>
 
-
 </form>
+</div>
 </body>
 </html>

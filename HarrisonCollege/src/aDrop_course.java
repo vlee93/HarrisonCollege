@@ -53,9 +53,14 @@ public class aDrop_course extends HttpServlet {
 				}catch(Exception e){
 					enrollment = null;
 				}
+				
+				qString = "SELECT h FROM HStudent h where h.studentId = ?1 ";
+				TypedQuery<HStudent> query4 = DBUtil.createQuery(qString, HStudent.class);
+				query4.setParameter(1, Long.parseLong(request.getParameter("student_id")));
+				String name = query4.getSingleResult().getStudentName();
 				//Check if the course is already deleted
 				if(enrollment == null)
-					alert = "<label style=\"color:red\">Course already dropped from the student" + request.getParameter("student_id") + "</label>";
+					alert = "<label style=\"color:red\">Course already dropped from " + name + "'s schedule </label>";
 				else{
 					DBUtil.deleteFromDB(enrollment);
 				    alert = "<label style=\"color:orange\">Course dropped successfully </label>";
