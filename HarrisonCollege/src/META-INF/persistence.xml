@@ -10,6 +10,7 @@
 		<class>model.HStaff</class>
 		<class>model.HStudent</class>
 		<class>model.HEnrollment</class>
+		<class>model.HRevenue</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
