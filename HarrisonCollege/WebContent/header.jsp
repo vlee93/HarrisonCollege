@@ -92,7 +92,12 @@
 				<% } else {	%>
 				<ul class="nav navbar-nav">
 					<li><a href="ClassSearch">Classes</a></li>
-					<li><a href="department">Departments</a></li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Departments<span class="caret"></span></a>
+         				<ul class="dropdown-menu">
+            				<li><a href="CourseSearch">Courses</a></li>
+            				<li><a href="MajorSearch">Majors</a></li>
+          				</ul>
+        			</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="logout"><span class="glyphicon glyphicon-log-in"></span>
