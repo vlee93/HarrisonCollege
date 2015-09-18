@@ -19,7 +19,7 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <style type="text/css">
-/* backgrount */
+/* background */
 .navbar-inverse {
 	background-color: #1E6912;
 	
