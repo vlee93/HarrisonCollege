@@ -59,6 +59,10 @@ ${adminStfMsg}
 ${studFMsg}
 ${insFMsg}
 ${courseFMsg}
+${deptRevMsg}
+${courseRevMsg}
+${instRevMsg}
+${classRevMsg}
 
 </body>
 </html>

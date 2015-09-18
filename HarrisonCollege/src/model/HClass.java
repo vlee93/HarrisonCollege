@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * The persistent class for the H_CLASS database table.
+ * 
  */
 @Entity
 @Table(name="H_CLASS", schema="TESTDB")
@@ -41,6 +42,11 @@ public class HClass implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="COURSE_ID")
 	private HCourse HCourse;
+
+	//bi-directional many-to-one association to HRevenue
+	@ManyToOne
+	@JoinColumn(name="SEM_ID")
+	private HRevenue HRevenue;
 
 	//bi-directional many-to-one association to HStaff
 	@ManyToOne
@@ -116,6 +122,14 @@ public class HClass implements Serializable {
 
 	public void setHCourse(HCourse HCourse) {
 		this.HCourse = HCourse;
+	}
+
+	public HRevenue getHRevenue() {
+		return this.HRevenue;
+	}
+
+	public void setHRevenue(HRevenue HRevenue) {
+		this.HRevenue = HRevenue;
 	}
 
 	public HStaff getHStaff() {

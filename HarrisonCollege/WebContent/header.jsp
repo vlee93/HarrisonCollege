@@ -84,6 +84,14 @@
             				<li><a href="courseF">Courses</a></li>
           				</ul>
         			</li>
+        			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin Revenue<span class="caret"></span></a>
+         				<ul class="dropdown-menu">
+            				<li><a href="Department_Revenues">Department</a></li>
+            				<li><a href="Instructor_revenue">Instructor</a></li>
+            				<li><a href="course_revenue">Course</a></li>
+            				<li><a href="class_revenue">Class</a></li>
+          				</ul>
+        			</li>
 				</ul>
 				<% }
 				

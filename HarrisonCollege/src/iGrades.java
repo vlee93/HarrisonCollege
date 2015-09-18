@@ -29,12 +29,12 @@ public class iGrades extends HttpServlet {
       
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		HStaff stf = (HStaff) session.getAttribute("userStaff");
 		String qString = "";
 		
-		//get courses
+		
 		qString = "select h from HCourse h";
 		TypedQuery<HCourse> query2 = DBUtil.createQuery(qString, HCourse.class);
 		List<HCourse> courses =  query2.getResultList();
@@ -50,10 +50,11 @@ public class iGrades extends HttpServlet {
 			List<HClass> classes =  query3.getResultList();
 			for(HClass Class:classes){
 				class_list.add(Class);
-				Courses_info.add(course);
+				
 			}
 	
 		}
+		
 		
 		
 		
@@ -66,11 +67,16 @@ public class iGrades extends HttpServlet {
 			query4.setParameter(1, Class);
 			enrollments = query4.getResultList();
 			for(HEnrollment enrollment:enrollments){
+				qString = "select h from HCourse h where h.courseId = ?1";
+				query2 = DBUtil.createQuery(qString, HCourse.class);
+				query2.setParameter(1, enrollment.getHClass().getHCourse().getCourseId());
+				Courses_info.add(query2.getSingleResult());
+				
 				enrollment_list.add(enrollment);
 			}
 		}
-		
-		
+		System.out.println("Courses " + Courses_info.size());
+		System.out.println("Enrolments " + enrollment_list.size() );
 		
 		//find students that belong to these enrollments
 		List<HStudent> students = new ArrayList<HStudent>();
@@ -84,16 +90,18 @@ public class iGrades extends HttpServlet {
 				students_list.add(student);
 			}
 		}
-      
+		
+		
 		session.setAttribute("students", students_list);
 		session.setAttribute("enrollments", enrollment_list);
 		session.setAttribute("courses", Courses_info);
 		
-		getServletContext().getRequestDispatcher("/iGrades.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/iViewGrades.jsp").forward(request, response);
 	}
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
 	}
 
 }
