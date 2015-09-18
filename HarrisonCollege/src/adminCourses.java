@@ -52,7 +52,7 @@ public class adminCourses extends HttpServlet {
 				+ "<div class=\"form-group\"><label for=\"avail\">Availability:</label><br /><label class=\"radio-inline\"><input type=\"radio\" name=\"avail\" id= \"avail\" value=\"1\">Yes</label><label class=\"radio-inline\"><input type=\"radio\" name=\"avail\" id = \"avail\" value = \"0\">No</label></div>"
 				+ "<button type=\"submit\" class=\"btn btn-default\" name=\"addC\" id=\"addC\">Submit</button></form>";
 		
-		adminCourMsg += "<br /><h3>Courses</h3><table class=\"table\"><thead><tr><th>Code</th><th>Course Name</th><th>Description</th><th>Credit #</th><th>Department</th><th>Available</th><th>Edit</th></tr></thead><tbody>";
+		adminCourMsg += "<br /><h3>Courses</h3><table class=\"table\"><thead><tr><th>Course ID</th><th>Code</th><th>Course Name</th><th>Description</th><th>Credit #</th><th>Department</th><th>Available</th><th>Edit</th></tr></thead><tbody>";
 		List<HCourse> course = DBUtil.createQuery("SELECT h FROM HCourse h", HCourse.class).getResultList();
 		for (int i = 0; i < course.size(); i++) {
 			String avail = "";
@@ -61,7 +61,7 @@ public class adminCourses extends HttpServlet {
 			} else {
 				avail = "no";
 			}
-			adminCourMsg += "<tr><td>" + course.get(i).getSubjectCode() + " " + course.get(i).getCourseNo() + "</td><td>" + course.get(i).getCourseName() + "</td><td>" + course.get(i).getCourseDesc() + "</td><td>" + course.get(i).getCredits() + "</td><td>" + course.get(i).getHDepartment().getDeptName() + "</td><td>" + avail + "</td><td><a href=\"adminEditDetails?courseid=" + course.get(i).getCourseId() + "\" class=\"btn btn-info\" role=\"button\">Edit</a></td></tr>";
+			adminCourMsg += "<tr><td>" + course.get(i).getCourseId() + "</td><td>" + course.get(i).getSubjectCode() + " " + course.get(i).getCourseNo() + "</td><td>" + course.get(i).getCourseName() + "</td><td>" + course.get(i).getCourseDesc() + "</td><td>" + course.get(i).getCredits() + "</td><td>" + course.get(i).getHDepartment().getDeptName() + "</td><td>" + avail + "</td><td><a href=\"adminEditDetails?courseid=" + course.get(i).getCourseId() + "\" class=\"btn btn-info\" role=\"button\">Edit</a></td></tr>";
 		}
 		adminCourMsg += "</tbody></table></div>";
 		request.setAttribute("depterror", error);

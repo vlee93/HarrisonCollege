@@ -21,8 +21,12 @@ ${transMsg}
 ${adminCourMsg}
 ${adminRoomMsg}
 ${adminMajorMsg}
+${adminDeptMsg}
 ${adminStfSuccess}
 ${adminStfMsg}
+${studFMsg}
+${insFMsg}
+${courseFMsg}
 
 </body>
 </html>
