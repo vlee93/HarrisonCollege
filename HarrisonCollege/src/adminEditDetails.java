@@ -43,7 +43,7 @@ public class adminEditDetails extends HttpServlet {
 		if (request.getParameter("courseid") != null) {
 			int id = Integer.parseInt(request.getParameter("courseid"));
 			HCourse course = DBUtil.createQuery("SELECT h FROM HCourse h WHERE h.courseId = " + id, HCourse.class).getSingleResult();
-			adminEdit += "<div class=\"container\"><h3>Edit Course</h3><form class=\"form-horizontal\" role=\"form\" name=\"editCourse\" id=\"editCourse\" action=\"adminEditDetails\" method=\"post\"><input type=\"hidden\" name=\"courseid\" id=\"courseid\" value=\"" + course.getCourseId() + "\">"
+			adminEdit += "<div class=\"container\"><h3>Edit Course</h3><form class=\"form-horizontal\" role=\"form\" name=\"editCourse\" id=\"editCourse\" onsubmit=\"return validateForm1()\" action=\"adminEditDetails\" method=\"post\"><input type=\"hidden\" name=\"courseid\" id=\"courseid\" value=\"" + course.getCourseId() + "\">"
 					+ "<div class=\"form-group\"><label for=\"subjcode\">Subject Code:</label><input type=\"text\" class=\"form-control\" name=\"subjcode\" id=\"subjcode\" value=\"" + course.getSubjectCode() + "\"></div>"
 					+ "<div class=\"form-group\"><label for=\"coursenum\">Course Number:</label><input type=\"text\" class=\"form-control\" name=\"coursenum\" id=\"coursenum\" value=\"" + course.getCourseNo() + "\"></div>"
 					+ "<div class=\"form-group\"><label for=\"courname\">Course Name:</label><input type=\"text\" class=\"form-control\" name=\"courname\" id=\"courname\" value=\"" + course.getCourseName() + "\"></div>"
@@ -57,7 +57,7 @@ public class adminEditDetails extends HttpServlet {
 		if (request.getParameter("roomid") != null) {
 			int id = Integer.parseInt(request.getParameter("roomid"));
 			HClassroom room = DBUtil.createQuery("SELECT h FROM HClassroom h WHERE h.roomId = " + id, HClassroom.class).getSingleResult();
-			adminEdit += "<div class=\"container\"><h3>Edit Classroom</h3><form class=\"form-horizontal\" role=\"form\" name=\"editRoom\" id=\"editRoom\" action=\"adminEditDetails\" method=\"post\"><input type=\"hidden\" name=\"roomid\" id=\"roomid\" value=\"" + room.getRoomId() + "\">"
+			adminEdit += "<div class=\"container\"><h3>Edit Classroom</h3><form class=\"form-horizontal\" role=\"form\" name=\"editRoom\" id=\"editRoom\" onsubmit=\"return validateForm2()\" action=\"adminEditDetails\" method=\"post\"><input type=\"hidden\" name=\"roomid\" id=\"roomid\" value=\"" + room.getRoomId() + "\">"
 					+ "<div class=\"form-group\"><label for=\"bldgname\">Building Name:</label><input type=\"text\" class=\"form-control\" name=\"bldgname\" id=\"bldgname\" value=\"" + room.getBldgName() + "\"></div>"
 					+ "<div class=\"form-group\"><label for=\"roomno\">Room #:</label><input type=\"text\" class=\"form-control\" name=\"roomno\" id=\"roomno\" value=\"" + room.getRoomNo() + "\"></div>"
 					+ "<div class=\"form-group\"><label for=\"capacity\">Capacity:</label><input type=\"text\" class=\"form-control\" name=\"capacity\" id=\"capacity\" value=\"" + room.getMaxCapacity() + "\"></div>"
@@ -68,7 +68,7 @@ public class adminEditDetails extends HttpServlet {
 		if (request.getParameter("majorid") != null) {
 			int id = Integer.parseInt(request.getParameter("majorid"));
 			HMajor major = DBUtil.createQuery("SELECT h FROM HMajor h WHERE h.majorId = " + id, HMajor.class).getSingleResult();
-			adminEdit += "<div class=\"container\"><h3>Edit Major</h3><form class=\"form-horizontal\" role=\"form\" name=\"editMajor\" id=\"editMajor\" action=\"adminEditDetails\" method=\"post\"><input type=\"hidden\" name=\"majorid\" id=\"majorid\" value=\"" + major.getMajorId() + "\">"
+			adminEdit += "<div class=\"container\"><h3>Edit Major</h3><form class=\"form-horizontal\" role=\"form\" name=\"editMajor\" id=\"editMajor\" onsubmit=\"return validateForm3()\" action=\"adminEditDetails\" method=\"post\"><input type=\"hidden\" name=\"majorid\" id=\"majorid\" value=\"" + major.getMajorId() + "\">"
 					+ "<div class=\"form-group\"><label for=\"majorname\">Major Name:</label><input type=\"text\" class=\"form-control\" name=\"majorname\" id=\"majorname\" value=\"" + major.getMajorName() + "\"></div>"
 					+ "<div class=\"form-group\"><label for=\"dept\">Department:</label><input type=\"text\" class=\"form-control\" name=\"dept\" id=\"dept\" value=\"" + major.getHDepartment().getDeptName() + "\"></div>"
 					+ "<div class=\"form-group\"><label for=\"avail\">Availability:</label><br /><label class=\"radio-inline\"><input type=\"radio\" name=\"avail\" id= \"avail\" value=\"1\">Yes</label><label class=\"radio-inline\"><input type=\"radio\" name=\"avail\" id = \"avail\" value = \"0\">No</label></div>"
@@ -78,7 +78,7 @@ public class adminEditDetails extends HttpServlet {
 		if (request.getParameter("deptid") != null) {
 			int id = Integer.parseInt(request.getParameter("deptid"));
 			HDepartment dept = DBUtil.createQuery("SELECT h FROM HDepartment h WHERE h.deptId = " + id, HDepartment.class).getSingleResult();
-			adminEdit += "<div class=\"container\"><h3>Edit Department</h3><form class=\"form-horizontal\" role=\"form\" name=\"editDept\" id=\"editDept\" action=\"adminEditDetails\" method=\"post\"><input type=\"hidden\" name=\"deptid\" id=\"deptid\" value=\"" + dept.getDeptId() + "\">"
+			adminEdit += "<div class=\"container\"><h3>Edit Department</h3><form class=\"form-horizontal\" role=\"form\" name=\"editDept\" id=\"editDept\" onsubmit=\"return validateForm4()\" action=\"adminEditDetails\" method=\"post\"><input type=\"hidden\" name=\"deptid\" id=\"deptid\" value=\"" + dept.getDeptId() + "\">"
 					+ "<div class=\"form-group\"><label for=\"deptname\">Department Name:</label><input type=\"text\" class=\"form-control\" name=\"deptname\" id=\"deptname\" value=\"" + dept.getDeptName() + "\"></div>"
 					+ "<div class=\"form-group\"><label for=\"avail\">Availability:</label><br /><label class=\"radio-inline\"><input type=\"radio\" name=\"avail\" id= \"avail\" value=\"1\">Yes</label><label class=\"radio-inline\"><input type=\"radio\" name=\"avail\" id = \"avail\" value = \"0\">No</label></div>"
 					+ "<button type=\"submit\" class=\"btn btn-default\" name=\"editD\" id=\"editD\">Submit</button></form>";

@@ -42,7 +42,7 @@ public class adminMajors extends HttpServlet {
 		}
 		session.removeAttribute("depterror");
 				
-		adminMajorMsg += "<div class=\"container\"><h3>Create Major</h3><form class=\"form-horizontal\" role=\"form\" name=\"addMajor\" id=\"addMajor\" action=\"adminMajors\" method=\"post\">"
+		adminMajorMsg += "<div class=\"container\"><h3>Create Major</h3><form class=\"form-horizontal\" role=\"form\" name=\"addMajor\" id=\"addMajor\" onsubmit=\"return validateForm3()\" action=\"adminMajors\" method=\"post\">"
 				+ "<div class=\"form-group\"><label for=\"majorname\">Major Name:</label><input type=\"text\" class=\"form-control\" name=\"majorname\" id=\"majorname\"></div>"
 				+ "<div class=\"form-group\"><label for=\"dept\">Department:</label><input type=\"text\" class=\"form-control\" name=\"dept\" id=\"dept\"></div>"
 				+ "<div class=\"form-group\"><label for=\"avail\">Availability:</label><br /><label class=\"radio-inline\"><input type=\"radio\" name=\"avail\" id= \"avail\" value=\"1\">Yes</label><label class=\"radio-inline\"><input type=\"radio\" name=\"avail\" id = \"avail\" value = \"0\">No</label></div>"

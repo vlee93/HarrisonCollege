@@ -42,7 +42,7 @@ public class adminCourses extends HttpServlet {
 		}
 		session.removeAttribute("depterror");
 				
-		adminCourMsg += "<div class=\"container\"><h3>Create Course</h3><form class=\"form-horizontal\" role=\"form\" name=\"addCourse\" id=\"addCourse\" action=\"adminCourses\" method=\"post\">"
+		adminCourMsg += "<div class=\"container\"><h3>Create Course</h3><form class=\"form-horizontal\" role=\"form\" name=\"addCourse\" id=\"addCourse\" onsubmit=\"return validateForm1()\" action=\"adminCourses\" method=\"post\">"
 				+ "<div class=\"form-group\"><label for=\"subjcode\">Subject Code:</label><input type=\"text\" class=\"form-control\" name=\"subjcode\" id=\"subjcode\"></div>"
 				+ "<div class=\"form-group\"><label for=\"coursenum\">Course Number:</label><input type=\"text\" class=\"form-control\" name=\"coursenum\" id=\"coursenum\"></div>"
 				+ "<div class=\"form-group\"><label for=\"courname\">Course Name:</label><input type=\"text\" class=\"form-control\" name=\"courname\" id=\"courname\"></div>"

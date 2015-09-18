@@ -1,4 +1,25 @@
 <jsp:include page="./header.jsp"/>
+<script type="text/javascript">
+function validateForm1() {
+    var a = document.forms["createAccForm"]["staName"].value;
+    var b = document.forms["createAccForm"]["staPwd"].value;
+    var c = document.forms["createAccForm"]["department"].value;
+    var d = document.forms["createAccForm"]["office"].value;
+    if (a == null || a == "" || b == null || b == "" || c == null || c == "" || d == null || d == "") {
+        alert("All fields must be filled out.");
+        return false;
+    }
+}
+
+function validateForm2() {
+    var a = document.forms["loginForm"]["staID"].value;
+    var b = document.forms["loginForm"]["loginPwd"].value;
+    if (a == null || a == "" || b == null || b == "") {
+        alert("All fields must be filled out.");
+        return false;
+    }
+}
+</script>
 
 <div class="container">
 ${error}
@@ -6,7 +27,7 @@ ${error}
 
 <div class="col-sm-6">
 <h3>Create an Account</h3>
-<form class="form-horizontal" role="form" name="createAccForm" id="createAccForm" action="staffLoginServ" method="post">
+<form class="form-horizontal" role="form" name="createAccForm" id="createAccForm" onsubmit="return validateForm1()" action="staffLoginServ" method="post">
   <div class="form-group">
     <label class="control-label col-sm-2" for="staName">Name:</label>
     <div class="col-sm-10">
@@ -41,7 +62,7 @@ ${error}
 &nbsp;
 <div class="col-sm-6">
 <h3>Login</h3>
-<form class="form-horizontal" role="form" name="loginForm" id="loginForm" action="staffLoginServ" method="post">
+<form class="form-horizontal" role="form" name="loginForm" id="loginForm" onsubmit="return validateForm2()" action="staffLoginServ" method="post">
   <div class="form-group">
     <label class="control-label col-sm-2" for="staID">Staff ID:</label>
     <div class="col-sm-10">

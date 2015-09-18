@@ -29,7 +29,6 @@ public class sTranscript extends HttpServlet {
      */
     public sTranscript() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -42,14 +41,18 @@ public class sTranscript extends HttpServlet {
 		transMsg += "<div class=\"container\"><div class=\"jumbotron\"><h3>" + stu.getStudentName() + "</h3><h5>Student ID: " + stu.getStudentId() + "</h5><h5>Start Year: " + stu.getStartYear() + "</h5><h5>Major: " + stu.getHMajor().getMajorName() + "</h5></div></div>";
 		List<HEnrollment> enroll = DBUtil.createQuery("SELECT h FROM HEnrollment h WHERE h.HStudent.studentId = " + stu.getStudentId(), HEnrollment.class).getResultList();
 		transMsg += "<br /><div class=\"container\"><h3>Unofficial Transcript</h3><table class=\"table\"><thead><tr><th>Code</th><th>Class Name</th><th>Instructor</th><th>Credit #</th><th>Grade</th><th>Points</th></tr></thead><tbody>";
+		double course_gpa;
+		String grade_letter;
 		double totalCredits = 0.0;
 		double totalPoints = 0.0;
 		double gpa = 0.0;
 		for (int i = 0; i < enroll.size(); i++) {
-			double points = enroll.get(i).getGrade() * enroll.get(i).getHClass().getHCourse().getCredits();
+			course_gpa = Double.parseDouble(CalGPA(enroll.get(i).getGrade()).substring(1, 2));
+			grade_letter = CalGPA(enroll.get(i).getGrade()).substring(0, 1);
+			double points = course_gpa * enroll.get(i).getHClass().getHCourse().getCredits();
 			totalCredits += enroll.get(i).getHClass().getHCourse().getCredits();
 			totalPoints += points;
-			transMsg += "<tr><td>" + enroll.get(i).getHClass().getHCourse().getSubjectCode() + " " + enroll.get(i).getHClass().getHCourse().getCourseNo() + "</td><td>" + enroll.get(i).getHClass().getHCourse().getCourseName() + "</td><td>" + enroll.get(i).getHClass().getHStaff().getStaffName() + "</td><td>" + enroll.get(i).getHClass().getHCourse().getCredits() + "</td><td>" + enroll.get(i).getGrade()+ "</td><td>" + points + "</td></tr>";
+			transMsg += "<tr><td>" + enroll.get(i).getHClass().getHCourse().getSubjectCode() + " " + enroll.get(i).getHClass().getHCourse().getCourseNo() + "</td><td>" + enroll.get(i).getHClass().getHCourse().getCourseName() + "</td><td>" + enroll.get(i).getHClass().getHStaff().getStaffName() + "</td><td>" + enroll.get(i).getHClass().getHCourse().getCredits() + "</td><td>" + grade_letter + "</td><td>" + points + "</td></tr>";
 		}
 		gpa = totalPoints / totalCredits;
 		transMsg += "<tr><th colspan=\"6\" style=\"text-align:right\">Total Credits: " + totalCredits + "</th></tr><tr><th colspan=\"6\" style=\"text-align:right\">Total Points: " + totalPoints + "</th></tr><tr><th colspan=\"6\" style=\"text-align:right\">GPA: " + formattedGpa(gpa) + "</th></tr></tbody></table>";
@@ -72,5 +75,33 @@ public class sTranscript extends HttpServlet {
 		String GPA = formatter.format(gpa);
 		return GPA;
 	}
+	
+	public String CalGPA(double grade){
+    	String GradeGPA = "";
+    	
+    	if(grade >= 90){
+    		GradeGPA += "A";
+    		GradeGPA += "4";
+    	}else if(grade >= 80){
+    		GradeGPA += "B";
+    		GradeGPA += "3";
+    	}else if(grade >= 70){
+    		GradeGPA += "C";
+    		GradeGPA += "2";
+    	}else if(grade >= 60){
+    		GradeGPA += "D";
+    		GradeGPA += "1";
+    	}else if(grade >= 0){
+    		GradeGPA += "F";
+    		GradeGPA += "0";
+    	}else if(grade == -1){
+    		GradeGPA += "I";
+    		GradeGPA += "0";
+    	}else if(grade == -2){
+    		GradeGPA += "W";
+    		GradeGPA += "0";
+    	}
+    	return GradeGPA;
+    }
 
 }

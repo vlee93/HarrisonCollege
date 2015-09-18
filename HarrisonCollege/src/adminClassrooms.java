@@ -34,7 +34,7 @@ public class adminClassrooms extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		adminRoomMsg = "";
 			
-		adminRoomMsg += "<div class=\"container\"><h3>Create Classroom</h3><form class=\"form-horizontal\" role=\"form\" name=\"addRoom\" id=\"addRoom\" action=\"adminClassrooms\" method=\"post\">"
+		adminRoomMsg += "<div class=\"container\"><h3>Create Classroom</h3><form class=\"form-horizontal\" role=\"form\" name=\"addRoom\" id=\"addRoom\" onsubmit=\"return validateForm2()\" action=\"adminClassrooms\" method=\"post\">"
 				+ "<div class=\"form-group\"><label for=\"bldgname\">Building Name:</label><input type=\"text\" class=\"form-control\" name=\"bldgname\" id=\"bldgname\"></div>"
 				+ "<div class=\"form-group\"><label for=\"roomno\">Room #:</label><input type=\"text\" class=\"form-control\" name=\"roomno\" id=\"roomno\"></div>"
 				+ "<div class=\"form-group\"><label for=\"capacity\">Capacity:</label><input type=\"text\" class=\"form-control\" name=\"capacity\" id=\"capacity\"></div>"

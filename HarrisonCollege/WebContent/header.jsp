@@ -66,7 +66,7 @@
 					<li><a href="aTranscript.jsp">View Transcript</a></li>
 					<li><a href="enrollment.jsp">Enrollment</a></li>
 				</ul>
-			<% } else if (userStaff != null && userStaff.getType().equalsIgnoreCase("Admin")) { %>
+				<% } else if (userStaff != null && userStaff.getType().equalsIgnoreCase("Admin")) { %>
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin Edit<span class="caret"></span></a>
 						<ul class="dropdown-menu">

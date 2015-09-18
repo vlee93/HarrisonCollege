@@ -33,7 +33,7 @@ public class adminDepartments extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		adminDeptMsg = "";
 		
-		adminDeptMsg += "<div class=\"container\"><h3>Create Department</h3><form class=\"form-horizontal\" role=\"form\" name=\"addDept\" id=\"addDept\" action=\"adminDepartments\" method=\"post\">"
+		adminDeptMsg += "<div class=\"container\"><h3>Create Department</h3><form class=\"form-horizontal\" role=\"form\" name=\"addDept\" id=\"addDept\" onsubmit=\"return validateForm4()\" action=\"adminDepartments\" method=\"post\">"
 				+ "<div class=\"form-group\"><label for=\"deptname\">Department Name:</label><input type=\"text\" class=\"form-control\" name=\"deptname\" id=\"deptname\"></div>"
 				+ "<div class=\"form-group\"><label for=\"avail\">Availability:</label><br /><label class=\"radio-inline\"><input type=\"radio\" name=\"avail\" id= \"avail\" value=\"1\">Yes</label><label class=\"radio-inline\"><input type=\"radio\" name=\"avail\" id = \"avail\" value = \"0\">No</label></div>"
 				+ "<button type=\"submit\" class=\"btn btn-default\" name=\"addD\" id=\"addD\">Submit</button></form>";
