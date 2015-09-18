@@ -37,7 +37,7 @@ public class courseF extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		courseFMsg = "";
 		HttpSession session = request.getSession();
-		courseFMsg += "<div class=\"container\"><form class=\"form-inline\" role=\"form\" name=\"coursef\" id=\"coursef\" action=\"courseF\" method=\"post\"><div class=\"form-group\"><label for=\"courseID\">Course ID:</label><input type=\"text\" class=\"form-control\" name=\"courseID\" id=\"courseID\" placeholder=\"Enter course ID\"><div class=\"form-group\"><button type=\"submit\" class=\"btn btn-default\" name=\"room\" id=\"room\">Search Classroom</button><button type=\"submit\" class=\"btn btn-default\" name=\"class\" id=\"class\">Search Class</button></div></form></div>";
+		courseFMsg += "<div class=\"container\"><h3>Course Search</h3><form class=\"form-inline\" role=\"form\" name=\"coursef\" id=\"coursef\" action=\"courseF\" method=\"post\"><div class=\"form-group\"><label for=\"courseID\">Course ID:</label><input type=\"text\" class=\"form-control\" name=\"courseID\" id=\"courseID\" placeholder=\"Enter course ID\"><div class=\"form-group\"><button type=\"submit\" class=\"btn btn-default\" name=\"room\" id=\"room\">Search Classroom</button><button type=\"submit\" class=\"btn btn-default\" name=\"class\" id=\"class\">Search Class</button></div></form></div>";
 		
 		if (session.getAttribute("courseFResult") != null) {
 			courseFMsg += session.getAttribute("courseFResult");
@@ -60,7 +60,7 @@ public class courseF extends HttpServlet {
 					List<HClass> classes = DBUtil.createQuery("SELECT h FROM HClass h WHERE h.HCourse.courseId = " + request.getParameter("courseID"), HClass.class).getResultList();
 					List<HClassroom> rooms = new ArrayList<HClassroom>();
 					for (HClass cls : classes) {
-						rooms.add(DBUtil.createQuery("SELECT h FROM HClassroom h WHERE h.HClasses.crnNumber = " + cls.getCrnNumber(), HClassroom.class).getSingleResult());
+						rooms.add(DBUtil.createQuery("SELECT h FROM HClassroom h WHERE h.roomId = " + cls.getHClassroom().getRoomId(), HClassroom.class).getSingleResult());
 					}
 					
 					courseFResult += "<div class=\"container\"><h3>Classrooms</h3><table class=\"table\"><thead><tr><th>Building Name</th><th>Room #</th><th>Capacity</th><th>Available</th></tr></thead><tbody>";
@@ -94,7 +94,7 @@ public class courseF extends HttpServlet {
 		}
 		
 		session.setAttribute("courseFResult", courseFResult);
-		response.sendRedirect("/HarrisonCollege/studentF");
+		response.sendRedirect("/HarrisonCollege/courseF");
 	}
 
 }

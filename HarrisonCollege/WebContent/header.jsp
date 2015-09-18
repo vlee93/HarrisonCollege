@@ -63,11 +63,16 @@
 				</ul>
 				<% } else if (userStaff != null && userStaff.getType().equalsIgnoreCase("Admin")) { %>
 				<ul class="nav navbar-nav">
-					<li><a href="adminCourses">Courses</a></li>
-					<li><a href="adminClassrooms">Classrooms</a></li>
-					<li><a href="adminMajors">Majors</a></li>
-					<li><a href="adminStaff">Staff</a></li>
-					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin Functions<span class="caret"></span></a>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin Edit<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="adminCourses">Courses</a></li>
+							<li><a href="adminClassrooms">Classrooms</a></li>
+							<li><a href="adminMajors">Majors</a></li>
+							<li><a href="adminDepartments">Departments</a></li>
+							<li><a href="adminStaff">Staff</a></li>
+						</ul>
+        			</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin Search<span class="caret"></span></a>
          				<ul class="dropdown-menu">
             				<li><a href="studentF">Students</a></li>
             				<li><a href="instructorF">Instructors</a></li>

@@ -38,7 +38,7 @@ public class instructorF extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		insFMsg = "";
 		HttpSession session = request.getSession();
-		insFMsg += "<div class=\"container\"><form class=\"form-inline\" role=\"form\" name=\"insf\" id=\"insf\" action=\"instructorF\" method=\"post\"><div class=\"form-group\"><label for=\"staID\">Staff ID:</label><input type=\"text\" class=\"form-control\" name=\"staID\" id=\"staID\" placeholder=\"Enter staff ID\"><div class=\"form-group\"><button type=\"submit\" class=\"btn btn-default\" name=\"room\" id=\"room\">Search Classroom</button><button type=\"submit\" class=\"btn btn-default\" name=\"class\" id=\"class\">Search Class</button><button type=\"submit\" class=\"btn btn-default\" name=\"student\" id=\"student\">Search Student</button></div></form></div>";
+		insFMsg += "<div class=\"container\"><h3>Instructor Search</h3><form class=\"form-inline\" role=\"form\" name=\"insf\" id=\"insf\" action=\"instructorF\" method=\"post\"><div class=\"form-group\"><label for=\"staID\">Staff ID:</label><input type=\"text\" class=\"form-control\" name=\"staID\" id=\"staID\" placeholder=\"Enter staff ID\"><div class=\"form-group\"><button type=\"submit\" class=\"btn btn-default\" name=\"room\" id=\"room\">Search Classroom</button><button type=\"submit\" class=\"btn btn-default\" name=\"class\" id=\"class\">Search Class</button><button type=\"submit\" class=\"btn btn-default\" name=\"student\" id=\"student\">Search Student</button></div></form></div>";
 		
 		if (session.getAttribute("insFResult") != null) {
 			insFMsg += session.getAttribute("insFResult");

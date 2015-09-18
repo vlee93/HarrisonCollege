@@ -75,6 +75,15 @@ public class adminEditDetails extends HttpServlet {
 					+ "<button type=\"submit\" class=\"btn btn-default\" name=\"editM\" id=\"editM\">Submit</button></form>";
 		}
 		
+		if (request.getParameter("deptid") != null) {
+			int id = Integer.parseInt(request.getParameter("deptid"));
+			HDepartment dept = DBUtil.createQuery("SELECT h FROM HDepartment h WHERE h.deptId = " + id, HDepartment.class).getSingleResult();
+			adminEdit += "<div class=\"container\"><h3>Edit Department</h3><form class=\"form-horizontal\" role=\"form\" name=\"editDept\" id=\"editDept\" action=\"adminEditDetails\" method=\"post\"><input type=\"hidden\" name=\"deptid\" id=\"deptid\" value=\"" + dept.getDeptId() + "\">"
+					+ "<div class=\"form-group\"><label for=\"deptname\">Department Name:</label><input type=\"text\" class=\"form-control\" name=\"deptname\" id=\"deptname\" value=\"" + dept.getDeptName() + "\"></div>"
+					+ "<div class=\"form-group\"><label for=\"avail\">Availability:</label><br /><label class=\"radio-inline\"><input type=\"radio\" name=\"avail\" id= \"avail\" value=\"1\">Yes</label><label class=\"radio-inline\"><input type=\"radio\" name=\"avail\" id = \"avail\" value = \"0\">No</label></div>"
+					+ "<button type=\"submit\" class=\"btn btn-default\" name=\"editD\" id=\"editD\">Submit</button></form>";
+		}
+		
 		request.setAttribute("adminEdit", adminEdit);
 		request.setAttribute("adminEditErr", adminEditErr);
 		getServletContext().getRequestDispatcher("/adminEdit.jsp").forward(request, response);
@@ -94,6 +103,10 @@ public class adminEditDetails extends HttpServlet {
 		
 		if (request.getParameter("editM") != null) {
 			editMajor(request, response);
+		}
+		
+		if (request.getParameter("editD") != null) {
+			editDept(request, response);
 		}
 	}
 	
@@ -170,6 +183,19 @@ public class adminEditDetails extends HttpServlet {
 			session.setAttribute("depterror", error);
 			response.sendRedirect("/HarrisonCollege/adminEditDetails?majorid=" + id);
 		}
+	}
+	
+	private void editDept(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		long id = Long.parseLong(request.getParameter("deptid"));
+		HDepartment dept = DBUtil.createQuery("SELECT h FROM HDepartment h WHERE h.deptId = " + id, HDepartment.class).getSingleResult();
+		String deptname = request.getParameter("deptname");
+		int available = Integer.parseInt(request.getParameter("avail"));
+		
+		dept.setAvailable(available);
+		dept.setDeptName(deptname);
+		
+		DBUtil.updateDB(dept);
+		response.sendRedirect("/HarrisonCollege/adminDepartments");
 	}
 
 }
